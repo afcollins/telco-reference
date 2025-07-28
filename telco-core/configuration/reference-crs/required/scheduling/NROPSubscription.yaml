@@ -6,7 +6,7 @@ metadata:
   name: numaresources-operator
   namespace: openshift-numaresources
 spec:
-  channel: "4.14"
+  channel: "4.16"
   name: numaresources-operator
-  source: redhat-operators-disconnected
+  source: redhat-operators
   sourceNamespace: openshift-marketplace

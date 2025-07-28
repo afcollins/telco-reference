@@ -1,0 +1,16 @@
+# required
+# count: 1-N
+apiVersion: metallb.io/v1beta1
+kind: BGPAdvertisement
+metadata:
+  name: bgpadvertisement-1
+  namespace: metallb-system
+spec:
+  ipAddressPools: [ address-pool ]
+  peers:
+    - peer-one
+  communities:
+  - NO_ADVERTISE
+  aggregationLength: 32
+  aggregationLengthV6: 128
+  localPref: 100

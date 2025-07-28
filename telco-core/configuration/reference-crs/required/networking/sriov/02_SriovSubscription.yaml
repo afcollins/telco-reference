@@ -8,7 +8,7 @@ metadata:
 spec:
   channel: "stable"
   name: sriov-network-operator
-  source: redhat-operators-disconnected
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
   installPlanApproval: Automatic
 status:

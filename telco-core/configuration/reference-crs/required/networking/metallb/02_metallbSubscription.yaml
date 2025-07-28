@@ -9,7 +9,7 @@ metadata:
 spec:
   channel: stable
   name: metallb-operator
-  source: redhat-operators-disconnected
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
   installPlanApproval: Automatic
 status:
