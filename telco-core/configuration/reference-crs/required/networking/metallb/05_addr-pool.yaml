@@ -4,12 +4,14 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: $name  # eg addresspool3
+  name: address-pool
   namespace: metallb-system
+  annotations:
+    metallb.universe.tf/address-pool: address-pool
 spec:
   ##############
   # Expected variation in this configuration
-  addresses: [ $pools ]
-  # - 3.3.3.0/24
+  addresses:
+  - 3.3.3.0/24
   autoAssign: true
   ##############

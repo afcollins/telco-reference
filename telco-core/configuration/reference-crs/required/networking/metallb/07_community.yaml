@@ -5,4 +5,7 @@ metadata:
   name: $name  # e.g. bgpcommunity
   namespace: metallb-system
 spec:
-  communities: [ $comm ]
+  communities:
+  - name: NO_ADVERTISE
+    value: '65535:65282'
+
