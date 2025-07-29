@@ -12,7 +12,7 @@ spec:
       operator: In
       values: [ worker, worker-1 ]
   paused: true
-  maxUnavailable: 100%
+  maxUnavailable: 10%
   nodeSelector:
     matchLabels:
       node-role.kubernetes.io/worker-1: ""

@@ -4,7 +4,7 @@
 apiVersion: performance.openshift.io/v2
 kind: PerformanceProfile
 metadata:
-  name: $name
+  name: workers
   annotations:
     # Some pods want the kernel stack to ignore IPv6 router Advertisement.
     kubeletconfig.experimental: |
@@ -17,21 +17,20 @@ spec:
     # we want to reserve the first Core of each NUMA socket
     #
     # no CPU left behind! all-cpus == isolated + reserved
-    isolated: $isolated  # eg 1-17,19-35,37-53,55-71
-    reserved: $reserved  # eg 0,18,36,54
+    isolated: 2-7  # eg 1-17,19-35,37-53,55-71
+    reserved: 0,1  # eg 0,18,36,54
   # Guaranteed QoS pods will disable IRQ balancing for cores allocated to the pod.
   # default value of globallyDisableIrqLoadBalancing is false
   globallyDisableIrqLoadBalancing: false
   hugepages:
     defaultHugepagesSize: 1G
     pages:
-    # 32GB per numa node
-    - count: $count  # eg 64
+    - count: 2  # eg 64
       size: 1G
-  # machineConfigPoolSelector: {}
-  #   pools.operator.machineconfiguration.openshift.io/worker: ''
-  nodeSelector: {}
-    # node-role.kubernetes.io/worker: ""
+  machineConfigPoolSelector:
+    pools.operator.machineconfiguration.openshift.io/worker-1: ''
+  nodeSelector:
+    node-role.kubernetes.io/worker-1: ""
   workloadHints:
     realTime: false
     highPowerConsumption: false
