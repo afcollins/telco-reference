@@ -13,4 +13,4 @@ spec:
     machineConfigPoolSelector:
       matchLabels:
         # This label must match the pool(s) you want to run NUMA-aligned workloads
-        pools.operator.machineconfiguration.openshift.io/worker-1: ""
+        pools.operator.machineconfiguration.openshift.io/worker-dpdk: ""

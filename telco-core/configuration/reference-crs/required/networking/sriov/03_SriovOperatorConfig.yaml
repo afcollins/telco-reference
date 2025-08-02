@@ -8,7 +8,7 @@ metadata:
   namespace: openshift-sriov-network-operator
 spec:
   configDaemonNodeSelector:
-    node-role.kubernetes.io/worker: ""
+    node-role.kubernetes.io/worker-dpdk: ""
   enableInjector: true
   enableOperatorWebhook: true
   disableDrain: false
