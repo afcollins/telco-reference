@@ -1,0 +1,42 @@
+# required
+# count: 1
+---
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  name: controlplane
+  annotations:
+    # Some pods want the kernel stack to ignore IPv6 router Advertisement.
+    kubeletconfig.experimental: |
+      {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"maxPods":750}
+spec:
+  additionalKernelArgs:
+  - module_blacklist=irdma
+  cpu:
+    # NUMA node0 CPU(s):         0-143,288-431
+    # NUMA node1 CPU(s):         144-287,432-575
+    # siblings: (0,36), (1,37)...
+    # we want to reserve the first Core of each NUMA socket
+    #
+    # no CPU left behind! all-cpus == isolated + reserved
+    # isolated:
+    #   Set the isolated CPUs. Ensure all of the Hyper-Threading pairs match.
+    # reserved:
+    #   Set the reserved CPUs. When workload partitioning is enabled, system processes, kernel threads, and system container threads are restricted to these CPUs. All CPUs that are not isolated should be reserved.
+    isolated: 25-143,169-287,288-431,432-575
+    reserved: 0-24,144-168
+  # Guaranteed QoS pods will disable IRQ balancing for cores allocated to the pod.
+  # default value of globallyDisableIrqLoadBalancing is false
+  globallyDisableIrqLoadBalancing: false
+  machineConfigPoolSelector:
+    pools.operator.machineconfiguration.openshift.io/master: ''
+  nodeSelector:
+    node-role.kubernetes.io/master: ""
+  workloadHints:
+    realTime: false
+    highPowerConsumption: false
+    perPodPowerManagement: true
+  realTimeKernel:
+    enabled: false
+  net:
+    userLevelNetworking: false
