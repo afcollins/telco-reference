@@ -1,0 +1,35 @@
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  annotations:
+    kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
+
+      '
+  name: worker-profile-3
+spec:
+  additionalKernelArgs:
+  - module_blacklist=irdma
+  cpu:
+    isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-3-isolated" | toLiteral
+      hub}}'
+    reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-3-reserved" | toLiteral
+      hub}}'
+  globallyDisableIrqLoadBalancing: false
+  hugepages:
+    defaultHugepagesSize: 1G
+    pages:
+    - count: '{{hub fromConfigMap "" "hw-types" "role-worker-3-hugepg-cnt" | toInt
+        hub}}'
+      size: 1G
+  net:
+    userLevelNetworking: false
+  nodeSelector:
+    node-role.kubernetes.io/worker-3: ''
+  numa:
+    topologyPolicy: single-numa-node
+  realTimeKernel:
+    enabled: false
+  workloadHints:
+    highPowerConsumption: false
+    perPodPowerManagement: true
+    realTime: false

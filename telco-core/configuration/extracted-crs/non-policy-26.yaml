@@ -1,0 +1,13 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-custom-mcp-unpause
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: placement-custom-mcp-unpause
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: custom-mcp-unpause

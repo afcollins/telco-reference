@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  nic-config-type-1-sriov-dev1: ens1f0
+  nic-config-type-1-sriov-dev2: eno1np0
+  nic-config-type-1-sriov-numvf: '8'
+  role-worker-1-hugepg-cnt: '4'
+  role-worker-1-isolated: 25-143,169-287,288-431,432-575
+  role-worker-1-reserved: 0-24,144-168
+  role-worker-2-hugepg-cnt: '8'
+  role-worker-2-isolated: 21-111
+  role-worker-2-reserved: 0-20
+kind: ConfigMap
+metadata:
+  name: hw-types
+  namespace: ztp-core-policies

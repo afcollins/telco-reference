@@ -1,0 +1,14 @@
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-core-upgrade-validate-19
+  namespace: ztp-core-policies
+spec:
+  clusterSelector:
+    matchExpressions:
+    - key: common
+      operator: In
+      values:
+      - core
+    - key: upgrade-version-4-19
+      operator: Exists
