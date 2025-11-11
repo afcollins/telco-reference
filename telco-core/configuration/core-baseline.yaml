@@ -101,4 +101,4 @@ policies:
       - path: reference-crs/required/scheduling/sched.yaml
         patches:
         - spec:
-            imageSpec: registry.example.com/openshift4/noderesourcetopology-scheduler-rhel9:v4.20.0
+            imageSpec: registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v4.20.0
