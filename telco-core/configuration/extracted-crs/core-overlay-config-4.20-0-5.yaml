@@ -8,8 +8,10 @@ spec:
   - name: custom-labels
     openshiftLabels:
       label3: other data
-      sitename: 'cloud17.alias.rdu3'
-      siteuuid: 'mno-7t8zl'
+      sitename: '{{hub fromConfigMap "" .ManagedClusterName "logging-name" | toLiteral
+        hub}}'
+      siteuuid: '{{hub fromConfigMap "" .ManagedClusterName "logging-uuid" | toLiteral
+        hub}}'
     type: openshiftLabels
   outputs:
   - kafka:

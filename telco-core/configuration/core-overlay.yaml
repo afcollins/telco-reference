@@ -207,6 +207,21 @@ policies:
             numVfs: 128
             priority: 99
             resourceName: intelnicse810
+      - path: reference-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
+        patches:
+        - metadata:
+            name: mellanox-cx6
+          spec:
+            deviceType: netdevice
+            nicSelector:
+              pfNames:
+                - 'eno16695np0'
+                - 'eno16705np1'
+            nodeSelector:
+              sriov.network.mellanoxnics.cx6: ""
+            numVfs: 8
+            priority: 99
+            resourceName: mellanoxnicscx6
 
       #
       # Configure ODF
