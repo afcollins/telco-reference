@@ -72,7 +72,7 @@ policies:
               isolated: '0-20'
             hugepages:
               pages:
-              - count: '32'
+              - count: 32
                 size: 1G
             nodeSelector:
               node-role.kubernetes.io/worker-r750: ""
@@ -87,7 +87,7 @@ policies:
               reserved: 0-51,144-195
             hugepages:
               pages:
-              - count: '32'
+              - count: 32
                 size: 1G
             nodeSelector:
               node-role.kubernetes.io/master: ""
@@ -176,28 +176,37 @@ policies:
       - path: reference-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
         - metadata:
-            name: test-signaling-snnp
+            name: intelnics-r750
           spec:
             deviceType: netdevice
             nicSelector:
               pfNames:
-                - '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-dev1" | toLiteral hub}}'
-                - '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-dev2" | toLiteral hub}}'
+                - 'eno12399'
+                - 'eno12409'
+                - 'eno12419'
+                - 'eno12429'
             nodeSelector:
-              nic-config: "type-1"
-            numVfs: '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-numvf" | toInt hub}}'
+              sriov.network.intelnics: "x710"
+            numVfs: 32
             priority: 99
-            # excludeTopology: true
-            resourceName: testSignaling
-      - path: reference-crs/required/networking/sriov/sriovNetwork.yaml
+            resourceName: intelnicsx710
+      - path: reference-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
         - metadata:
-            name: sriov-network-signal-1
+            name: intelnics-e810
           spec:
-            capabilities: "{}"
-            ipam: '{}'
-            networkNamespace: signal-1
-            resourceName: testSignaling
+            deviceType: netdevice
+            nicSelector:
+              pfNames:
+                - 'ens3f0'
+                - 'ens3f1'
+                - 'ens6f0'
+                - 'ens6f1'
+            nodeSelector:
+              sriov.network.intelnics.e810: ""
+            numVfs: 128
+            priority: 99
+            resourceName: intelnicse810
 
       #
       # Configure ODF

@@ -1,19 +1,18 @@
 apiVersion: sriovnetwork.openshift.io/v1
 kind: SriovNetworkNodePolicy
 metadata:
-  name: test-signaling-snnp
+  name: intelnics-r750
   namespace: openshift-sriov-network-operator
 spec:
   deviceType: netdevice
   nicSelector:
     pfNames:
-    - '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-dev1" | toLiteral
-      hub}}'
-    - '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-dev2" | toLiteral
-      hub}}'
+    - eno12399
+    - eno12409
+    - eno12419
+    - eno12429
   nodeSelector:
-    nic-config: type-1
-  numVfs: '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-numvf" | toInt
-    hub}}'
+    sriov.network.intelnics: x710
+  numVfs: 32
   priority: 99
-  resourceName: testSignaling
+  resourceName: intelnicsx710
