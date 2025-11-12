@@ -68,8 +68,8 @@ policies:
             name: worker
           spec:
             cpu:
-              reserved: '21-111'
-              isolated: '0-20'
+              isolated: '21-111'
+              reserved: '0-20'
             hugepages:
               pages:
               - count: 32
