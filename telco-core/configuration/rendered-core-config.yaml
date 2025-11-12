@@ -533,8 +533,8 @@ spec:
             kind: MachineConfigPool
             metadata:
               labels:
-                machineconfiguration.openshift.io/role: worker-1
-              name: worker-1
+                machineconfiguration.openshift.io/role: worker-r750
+              name: worker-r750
             spec:
               machineConfigSelector:
                 matchExpressions:
@@ -542,11 +542,11 @@ spec:
                   operator: In
                   values:
                   - worker
-                  - worker-1
+                  - worker-r750
               maxUnavailable: 1
               nodeSelector:
                 matchLabels:
-                  node-role.kubernetes.io/worker-1: ""
+                  node-role.kubernetes.io/worker-r750: ""
               paused: false
         - complianceType: musthave
           objectDefinition:
@@ -568,27 +568,6 @@ spec:
               nodeSelector:
                 matchLabels:
                   node-role.kubernetes.io/worker-2: ""
-              paused: false
-        - complianceType: musthave
-          objectDefinition:
-            apiVersion: machineconfiguration.openshift.io/v1
-            kind: MachineConfigPool
-            metadata:
-              labels:
-                machineconfiguration.openshift.io/role: worker-3
-              name: worker-3
-            spec:
-              machineConfigSelector:
-                matchExpressions:
-                - key: machineconfiguration.openshift.io/role
-                  operator: In
-                  values:
-                  - worker
-                  - worker-3
-              maxUnavailable: 1
-              nodeSelector:
-                matchLabels:
-                  node-role.kubernetes.io/worker-3: ""
               paused: false
         remediationAction: inform
         severity: low
@@ -1113,7 +1092,7 @@ spec:
                   infoRefreshMode: Periodic
                 machineConfigPoolSelector:
                   matchLabels:
-                    machineconfiguration.openshift.io/role: worker-2
+                    machineconfiguration.openshift.io/role: worker-r750
         - complianceType: musthave
           objectDefinition:
             apiVersion: performance.openshift.io/v2
@@ -1121,27 +1100,24 @@ spec:
             metadata:
               annotations:
                 kubeletconfig.experimental: |
-                  {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
-              name: worker-profile-1
+                  {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"maxPods":750}
+              name: worker
             spec:
               additionalKernelArgs:
               - module_blacklist=irdma
               cpu:
-                isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-1-isolated"
-                  | toLiteral hub}}'
-                reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-1-reserved"
-                  | toLiteral hub}}'
+                isolated: 0-20
+                reserved: 21-111
               globallyDisableIrqLoadBalancing: false
               hugepages:
                 defaultHugepagesSize: 1G
                 pages:
-                - count: '{{hub fromConfigMap "" "hw-types" "role-worker-1-hugepg-cnt"
-                    | toInt hub}}'
+                - count: "32"
                   size: 1G
               net:
                 userLevelNetworking: false
               nodeSelector:
-                node-role.kubernetes.io/worker-1: ""
+                node-role.kubernetes.io/worker-r750: ""
               numa:
                 topologyPolicy: single-numa-node
               realTimeKernel:
@@ -1157,63 +1133,24 @@ spec:
             metadata:
               annotations:
                 kubeletconfig.experimental: |
-                  {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
-              name: worker-profile-2
+                  {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"maxPods":750}
+              name: controlplane
             spec:
               additionalKernelArgs:
               - module_blacklist=irdma
               cpu:
-                isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-2-isolated"
-                  | toLiteral hub}}'
-                reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-2-reserved"
-                  | toLiteral hub}}'
+                isolated: 52-143,196-575
+                reserved: 0-51,144-195
               globallyDisableIrqLoadBalancing: false
               hugepages:
                 defaultHugepagesSize: 1G
                 pages:
-                - count: '{{hub fromConfigMap "" "hw-types" "role-worker-2-hugepg-cnt"
-                    | toInt hub}}'
+                - count: "32"
                   size: 1G
               net:
                 userLevelNetworking: false
               nodeSelector:
-                node-role.kubernetes.io/worker-2: ""
-              numa:
-                topologyPolicy: single-numa-node
-              realTimeKernel:
-                enabled: false
-              workloadHints:
-                highPowerConsumption: false
-                perPodPowerManagement: true
-                realTime: false
-        - complianceType: musthave
-          objectDefinition:
-            apiVersion: performance.openshift.io/v2
-            kind: PerformanceProfile
-            metadata:
-              annotations:
-                kubeletconfig.experimental: |
-                  {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
-              name: worker-profile-3
-            spec:
-              additionalKernelArgs:
-              - module_blacklist=irdma
-              cpu:
-                isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-3-isolated"
-                  | toLiteral hub}}'
-                reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-3-reserved"
-                  | toLiteral hub}}'
-              globallyDisableIrqLoadBalancing: false
-              hugepages:
-                defaultHugepagesSize: 1G
-                pages:
-                - count: '{{hub fromConfigMap "" "hw-types" "role-worker-3-hugepg-cnt"
-                    | toInt hub}}'
-                  size: 1G
-              net:
-                userLevelNetworking: false
-              nodeSelector:
-                node-role.kubernetes.io/worker-3: ""
+                node-role.kubernetes.io/master: ""
               numa:
                 topologyPolicy: single-numa-node
               realTimeKernel:
@@ -1532,8 +1469,8 @@ spec:
             kind: MachineConfigPool
             metadata:
               labels:
-                machineconfiguration.openshift.io/role: worker-1
-              name: worker-1
+                machineconfiguration.openshift.io/role: worker-r750
+              name: worker-r750
             spec:
               machineConfigSelector:
                 matchExpressions:
@@ -1541,11 +1478,11 @@ spec:
                   operator: In
                   values:
                   - worker
-                  - worker-1
+                  - worker-r750
               maxUnavailable: 100%
               nodeSelector:
                 matchLabels:
-                  node-role.kubernetes.io/worker-1: ""
+                  node-role.kubernetes.io/worker-r750: ""
               paused: true
         - complianceType: musthave
           objectDefinition:
@@ -1567,27 +1504,6 @@ spec:
               nodeSelector:
                 matchLabels:
                   node-role.kubernetes.io/worker-2: ""
-              paused: true
-        - complianceType: musthave
-          objectDefinition:
-            apiVersion: machineconfiguration.openshift.io/v1
-            kind: MachineConfigPool
-            metadata:
-              labels:
-                machineconfiguration.openshift.io/role: worker-3
-              name: worker-3
-            spec:
-              machineConfigSelector:
-                matchExpressions:
-                - key: machineconfiguration.openshift.io/role
-                  operator: In
-                  values:
-                  - worker
-                  - worker-3
-              maxUnavailable: 100%
-              nodeSelector:
-                matchLabels:
-                  node-role.kubernetes.io/worker-3: ""
               paused: true
         remediationAction: inform
         severity: low
@@ -1658,8 +1574,8 @@ spec:
             kind: MachineConfigPool
             metadata:
               labels:
-                machineconfiguration.openshift.io/role: worker-1
-              name: worker-1
+                machineconfiguration.openshift.io/role: worker-r750
+              name: worker-r750
             spec:
               machineConfigSelector:
                 matchExpressions:
@@ -1667,11 +1583,11 @@ spec:
                   operator: In
                   values:
                   - worker
-                  - worker-1
+                  - worker-r750
               maxUnavailable: 100%
               nodeSelector:
                 matchLabels:
-                  node-role.kubernetes.io/worker-1: ""
+                  node-role.kubernetes.io/worker-r750: ""
               paused: false
             status:
               conditions:
@@ -1699,33 +1615,6 @@ spec:
               nodeSelector:
                 matchLabels:
                   node-role.kubernetes.io/worker-2: ""
-              paused: false
-            status:
-              conditions:
-              - status: "True"
-                type: Updated
-              - status: "False"
-                type: Updating
-        - complianceType: musthave
-          objectDefinition:
-            apiVersion: machineconfiguration.openshift.io/v1
-            kind: MachineConfigPool
-            metadata:
-              labels:
-                machineconfiguration.openshift.io/role: worker-3
-              name: worker-3
-            spec:
-              machineConfigSelector:
-                matchExpressions:
-                - key: machineconfiguration.openshift.io/role
-                  operator: In
-                  values:
-                  - worker
-                  - worker-3
-              maxUnavailable: 100%
-              nodeSelector:
-                matchLabels:
-                  node-role.kubernetes.io/worker-3: ""
               paused: false
             status:
               conditions:

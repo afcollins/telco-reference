@@ -2,8 +2,8 @@ apiVersion: machineconfiguration.openshift.io/v1
 kind: MachineConfigPool
 metadata:
   labels:
-    machineconfiguration.openshift.io/role: worker-1
-  name: worker-1
+    machineconfiguration.openshift.io/role: worker-r750
+  name: worker-r750
 spec:
   machineConfigSelector:
     matchExpressions:
@@ -11,9 +11,9 @@ spec:
       operator: In
       values:
       - worker
-      - worker-1
+      - worker-r750
   maxUnavailable: 100%
   nodeSelector:
     matchLabels:
-      node-role.kubernetes.io/worker-1: ''
+      node-role.kubernetes.io/worker-r750: ''
   paused: true

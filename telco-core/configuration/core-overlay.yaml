@@ -59,53 +59,38 @@ policies:
               machineConfigPoolSelector:
                 matchLabels:
                   # This label must match the pool(s) you want to run NUMA-aligned workloads
-                  machineconfiguration.openshift.io/role: worker-2
+                  machineconfiguration.openshift.io/role: worker-r750
 
       # MCP PerformanceProfiles
       - path: reference-crs/required/performance/PerformanceProfile.yaml
         patches:
         - metadata:
-            name: worker-profile-1
+            name: worker
           spec:
             cpu:
-              reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-1-reserved" | toLiteral hub}}'
-              isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-1-isolated" | toLiteral hub}}'
+              reserved: '21-111'
+              isolated: '0-20'
             hugepages:
               pages:
-              - count: '{{hub fromConfigMap "" "hw-types" "role-worker-1-hugepg-cnt" | toInt hub}}'
+              - count: '32'
                 size: 1G
             nodeSelector:
-              node-role.kubernetes.io/worker-1: ""
+              node-role.kubernetes.io/worker-r750: ""
 
       - path: reference-crs/required/performance/PerformanceProfile.yaml
         patches:
         - metadata:
-            name: worker-profile-2
+            name: controlplane
           spec:
             cpu:
-              reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-2-reserved" | toLiteral hub}}'
-              isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-2-isolated" | toLiteral hub}}'
+              isolated: 52-143,196-575
+              reserved: 0-51,144-195
             hugepages:
               pages:
-              - count: '{{hub fromConfigMap "" "hw-types" "role-worker-2-hugepg-cnt" | toInt hub}}'
+              - count: '32'
                 size: 1G
             nodeSelector:
-              node-role.kubernetes.io/worker-2: ""
-
-      - path: reference-crs/required/performance/PerformanceProfile.yaml
-        patches:
-        - metadata:
-            name: worker-profile-3
-          spec:
-            cpu:
-              reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-3-reserved" | toLiteral hub}}'
-              isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-3-isolated" | toLiteral hub}}'
-            hugepages:
-              pages:
-              - count: '{{hub fromConfigMap "" "hw-types" "role-worker-3-hugepg-cnt" | toInt hub}}'
-                size: 1G
-            nodeSelector:
-              node-role.kubernetes.io/worker-3: ""
+              node-role.kubernetes.io/master: ""
 
       # Cluster Logging
       - path: reference-crs/optional/logging/ClusterLogForwarder.yaml

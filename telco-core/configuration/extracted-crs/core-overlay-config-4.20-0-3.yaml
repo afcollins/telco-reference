@@ -2,29 +2,26 @@ apiVersion: performance.openshift.io/v2
 kind: PerformanceProfile
 metadata:
   annotations:
-    kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
+    kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"maxPods":750}
 
       '
-  name: worker-profile-1
+  name: worker
 spec:
   additionalKernelArgs:
   - module_blacklist=irdma
   cpu:
-    isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-1-isolated" | toLiteral
-      hub}}'
-    reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-1-reserved" | toLiteral
-      hub}}'
+    isolated: 0-20
+    reserved: 21-111
   globallyDisableIrqLoadBalancing: false
   hugepages:
     defaultHugepagesSize: 1G
     pages:
-    - count: '{{hub fromConfigMap "" "hw-types" "role-worker-1-hugepg-cnt" | toInt
-        hub}}'
+    - count: 32
       size: 1G
   net:
     userLevelNetworking: false
   nodeSelector:
-    node-role.kubernetes.io/worker-1: ''
+    node-role.kubernetes.io/worker-r750: ''
   numa:
     topologyPolicy: single-numa-node
   realTimeKernel:

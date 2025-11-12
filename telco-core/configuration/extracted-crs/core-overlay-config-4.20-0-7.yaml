@@ -1,8 +1,19 @@
-apiVersion: metallb.io/v1beta1
-kind: MetalLB
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
 metadata:
-  name: metallb
-  namespace: metallb-system
+  name: test-signaling-snnp
+  namespace: openshift-sriov-network-operator
 spec:
+  deviceType: netdevice
+  nicSelector:
+    pfNames:
+    - '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-dev1" | toLiteral
+      hub}}'
+    - '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-dev2" | toLiteral
+      hub}}'
   nodeSelector:
-    node-role.kubernetes.io/worker: ''
+    nic-config: type-1
+  numVfs: '{{hub fromConfigMap "" "hw-types" "nic-config-type-1-sriov-numvf" | toInt
+    hub}}'
+  priority: 99
+  resourceName: testSignaling

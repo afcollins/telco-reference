@@ -1,35 +1,34 @@
-apiVersion: performance.openshift.io/v2
-kind: PerformanceProfile
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
 metadata:
-  annotations:
-    kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
-
-      '
-  name: worker-profile-3
+  name: instance
+  namespace: openshift-logging
 spec:
-  additionalKernelArgs:
-  - module_blacklist=irdma
-  cpu:
-    isolated: '{{hub fromConfigMap "" "hw-types" "role-worker-3-isolated" | toLiteral
-      hub}}'
-    reserved: '{{hub fromConfigMap "" "hw-types" "role-worker-3-reserved" | toLiteral
-      hub}}'
-  globallyDisableIrqLoadBalancing: false
-  hugepages:
-    defaultHugepagesSize: 1G
-    pages:
-    - count: '{{hub fromConfigMap "" "hw-types" "role-worker-3-hugepg-cnt" | toInt
-        hub}}'
-      size: 1G
-  net:
-    userLevelNetworking: false
-  nodeSelector:
-    node-role.kubernetes.io/worker-3: ''
-  numa:
-    topologyPolicy: single-numa-node
-  realTimeKernel:
-    enabled: false
-  workloadHints:
-    highPowerConsumption: false
-    perPodPowerManagement: true
-    realTime: false
+  filters:
+  - name: custom-labels
+    openshiftLabels:
+      label3: other data
+      sitename: 'cloud17.alias.rdu3'
+      siteuuid: 'mno-7t8zl'
+    type: openshiftLabels
+  outputs:
+  - kafka:
+      url: '{{hub fromConfigMap "" "regional" (printf "%s-log-url" (index .ManagedClusterLabels
+        "region")) | toLiteral hub}}'
+    name: kafka-open
+    type: kafka
+  pipelines:
+  - filterRefs:
+    - custom-labels
+    inputRefs:
+    - audit
+    - infrastructure
+    name: all-to-default
+    outputRefs:
+    - kafka-open
+  serviceAccount:
+    name: collector
+status:
+  conditions:
+  - status: 'True'
+    type: observability.openshift.io/Valid

@@ -8,7 +8,7 @@ metadata:
   annotations:
     # Some pods want the kernel stack to ignore IPv6 router Advertisement.
     kubeletconfig.experimental: |
-      {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"]}
+      {"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"maxPods":750}
 spec:
   additionalKernelArgs:
   - module_blacklist=irdma
