@@ -176,7 +176,7 @@ policies:
       - path: reference-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
         - metadata:
-            name: intelnics-r750
+            name: intelx710
           spec:
             deviceType: netdevice
             nicSelector:
@@ -186,14 +186,14 @@ policies:
                 - 'eno12419'
                 - 'eno12429'
             nodeSelector:
-              sriov.network.intelnics: "x710"
+              sriov.network.intelx710: ''
             numVfs: 32
             priority: 99
-            resourceName: intelnicsx710
+            resourceName: intel
       - path: reference-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
         - metadata:
-            name: intelnics-e810
+            name: intele810
           spec:
             deviceType: netdevice
             nicSelector:
@@ -203,10 +203,10 @@ policies:
                 - 'ens6f0'
                 - 'ens6f1'
             nodeSelector:
-              sriov.network.intelnics.e810: ""
+              sriov.network.intele810: ''
             numVfs: 128
             priority: 99
-            resourceName: intelnicse810
+            resourceName: intel
       - path: reference-crs/required/networking/sriov/sriovNetworkNodePolicy.yaml
         patches:
         - metadata:
