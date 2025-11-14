@@ -1,7 +1,7 @@
 apiVersion: sriovnetwork.openshift.io/v1
 kind: SriovNetworkNodePolicy
 metadata:
-  name: intelnics-e810
+  name: intele810
   namespace: openshift-sriov-network-operator
 spec:
   deviceType: netdevice
@@ -12,7 +12,7 @@ spec:
     - ens6f0
     - ens6f1
   nodeSelector:
-    sriov.network.intelnics.e810: ''
+    sriov.network.intele810: ''
   numVfs: 128
   priority: 99
-  resourceName: intelnicse810
+  resourceName: intel
