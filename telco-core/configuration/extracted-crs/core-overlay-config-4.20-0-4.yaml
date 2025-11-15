@@ -10,8 +10,8 @@ spec:
   additionalKernelArgs:
   - module_blacklist=irdma
   cpu:
-    isolated: 100-575
-    reserved: 0-99
+    isolated: 50-287,338-575
+    reserved: 0-49,288-337
   globallyDisableIrqLoadBalancing: false
   hugepages:
     defaultHugepagesSize: 1G
@@ -23,7 +23,7 @@ spec:
   nodeSelector:
     node-role.kubernetes.io/master: ''
   numa:
-    topologyPolicy: single-numa-node
+    topologyPolicy: best-effort
   realTimeKernel:
     enabled: false
   workloadHints:

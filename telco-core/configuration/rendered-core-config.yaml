@@ -1106,8 +1106,8 @@ spec:
               additionalKernelArgs:
               - module_blacklist=irdma
               cpu:
-                isolated: 21-111
-                reserved: 0-20
+                isolated: 1,3,5,7,9,11,13,15,17,19-55,57,59,61,63,65,67,69,71,73,75-111
+                reserved: 0,2,4,6,8,10,12,14,16,18,56,58,60,62,64,66,68,70,72,74
               globallyDisableIrqLoadBalancing: false
               hugepages:
                 defaultHugepagesSize: 1G
@@ -1119,7 +1119,7 @@ spec:
               nodeSelector:
                 node-role.kubernetes.io/worker-r750: ""
               numa:
-                topologyPolicy: single-numa-node
+                topologyPolicy: best-effort
               realTimeKernel:
                 enabled: false
               workloadHints:
@@ -1139,8 +1139,8 @@ spec:
               additionalKernelArgs:
               - module_blacklist=irdma
               cpu:
-                isolated: 100-575
-                reserved: 0-99
+                isolated: 50-287,338-575
+                reserved: 0-49,288-337
               globallyDisableIrqLoadBalancing: false
               hugepages:
                 defaultHugepagesSize: 1G
@@ -1152,7 +1152,7 @@ spec:
               nodeSelector:
                 node-role.kubernetes.io/master: ""
               numa:
-                topologyPolicy: single-numa-node
+                topologyPolicy: best-effort
               realTimeKernel:
                 enabled: false
               workloadHints:
