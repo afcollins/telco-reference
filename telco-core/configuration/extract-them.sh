@@ -19,28 +19,28 @@ os.makedirs(output_dir, exist_ok=True)
 
 with open("rendered-core-config.yaml", 'r') as f:
     docs = yaml.safe_load_all(f)
-    
+
     counter = 0
     for doc in docs:
         if not doc:
             continue
-            
+
         # Check if it's a Policy
         if doc.get('kind') == 'Policy':
             policy_name = doc.get('metadata', {}).get('name', f'policy-{counter}')
-            
+
             # Extract object-templates from ConfigurationPolicy
             policy_templates = doc.get('spec', {}).get('policy-templates', [])
-            
+
             for pt_idx, pt in enumerate(policy_templates):
                 obj_def = pt.get('objectDefinition', {})
-                
+
                 if obj_def.get('kind') == 'ConfigurationPolicy':
                     obj_templates = obj_def.get('spec', {}).get('object-templates', [])
-                    
+
                     for ot_idx, ot in enumerate(obj_templates):
                         obj_template = ot.get('objectDefinition', {})
-                        
+
                         if obj_template:
                             filename = f"{output_dir}/{policy_name}-{pt_idx}-{ot_idx}.yaml"
                             with open(filename, 'w') as out:
