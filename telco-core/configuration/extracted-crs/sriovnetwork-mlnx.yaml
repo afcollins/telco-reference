@@ -1,0 +1,16 @@
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: mellanoxcx6
+  namespace: openshift-sriov-network-operator
+spec:
+  deviceType: netdevice
+  nicSelector:
+    pfNames:
+    - eno16695np0
+    - eno16705np1
+  nodeSelector:
+    sriov.network.mellanoxcx6: ''
+  numVfs: 8
+  priority: 99
+  resourceName: intel
