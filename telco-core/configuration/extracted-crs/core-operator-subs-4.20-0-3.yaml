@@ -1,0 +1,16 @@
+apiVersion: operators.coreos.com/v1
+kind: Operator
+metadata:
+  annotations:
+    ran.openshift.io/ztp-deploy-wave: '2'
+  name: cluster-logging.openshift-logging
+status:
+  components:
+    refs:
+    - conditions:
+      - reason: InstallSucceeded
+        status: 'True'
+        type: Succeeded
+      kind: ClusterServiceVersion
+      name: cluster-logging.v6.2.0
+      namespace: openshift-logging

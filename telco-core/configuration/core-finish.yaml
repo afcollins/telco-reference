@@ -31,29 +31,6 @@ policies:
             - type: Updating
               status: "False"
 
-      - path: reference-crs/custom-manifests/mcp-worker-2.yaml
-        patches:
-        - spec:
-            paused: false
-            maxUnavailable: 100%
-          status:
-            conditions:
-            - type: Updated
-              status: "True"
-            - type: Updating
-              status: "False"
-
-      - path: reference-crs/custom-manifests/mcp-worker-3.yaml
-        patches:
-        - spec:
-            paused: false
-            maxUnavailable: 100%
-          status:
-            conditions:
-            - type: Updated
-              status: "True"
-            - type: Updating
-              status: "False"
 
   - name: core-custom-mcp-set-maxavailable
     policyAnnotations:
@@ -61,14 +38,6 @@ policies:
     manifests:
       # This sets the desired maxUnavailable on the customMCPs
       - path: reference-crs/custom-manifests/mcp-worker-1.yaml
-        patches:
-        - spec:
-            maxUnavailable: 1
-      - path: reference-crs/custom-manifests/mcp-worker-2.yaml
-        patches:
-        - spec:
-            maxUnavailable: 1
-      - path: reference-crs/custom-manifests/mcp-worker-3.yaml
         patches:
         - spec:
             maxUnavailable: 1

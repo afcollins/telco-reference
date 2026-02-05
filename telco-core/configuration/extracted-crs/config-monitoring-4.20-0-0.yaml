@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  config.yaml: "alertmanagerMain:\n  volumeClaimTemplate:\n    spec:\n      storageClassName:\
+    \ ocs-external-storagecluster-ceph-rbd\n      resources:\n        requests:\n\
+    \          storage: 20Gi\nprometheusK8s:\n  retention: 15d\n  volumeClaimTemplate:\n\
+    \    spec:\n      storageClassName: ocs-external-storagecluster-ceph-rbd\n   \
+    \   resources:\n        requests:\n          storage: 100Gi\n  additionalAlertmanagerConfigs:\n\
+    \  - scheme: \"http\"\n    pathPrefix: \"/\"\n    timeout: \"30s\"\n    apiVersion:\
+    \ \"v1\"\n    staticConfigs:\n    - \"10.11.12.14:9999\"\n"
+kind: ConfigMap
+metadata:
+  name: cluster-monitoring-config
+  namespace: openshift-monitoring

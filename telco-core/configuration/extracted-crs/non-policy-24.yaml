@@ -1,0 +1,13 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-upgrade-prep-19
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: placement-core-upgrade-prep-19
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-upgrade-prep-19
