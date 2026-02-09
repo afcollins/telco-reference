@@ -10,8 +10,8 @@ spec:
   additionalKernelArgs:
   - module_blacklist=irdma
   cpu:
-    isolated: 4-7
-    reserved: 0-3
+    isolated: 2-7
+    reserved: 0-1
   globallyDisableIrqLoadBalancing: false
   hugepages:
     defaultHugepagesSize: 1G
