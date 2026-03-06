@@ -2,21 +2,19 @@ apiVersion: performance.openshift.io/v2
 kind: PerformanceProfile
 metadata:
   annotations:
-    kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"maxPods":110}
-
-      '
+    kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"maxPods":110}'
   name: worker-profile-1
 spec:
   additionalKernelArgs:
   - module_blacklist=irdma
   cpu:
-    isolated: 2-7
+    isolated: 2-15
     reserved: 0-1
   globallyDisableIrqLoadBalancing: false
   hugepages:
     defaultHugepagesSize: 1G
     pages:
-    - count: 2
+    - count: 4
       size: 1G
   net:
     userLevelNetworking: false
