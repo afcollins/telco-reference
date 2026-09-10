@@ -9,7 +9,7 @@ metadata:
 spec:
   channel: "5.0"
   name: numaresources-operator
-  source: redhat-operators-disconnected
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
   installPlanApproval: Manual
 status:
