@@ -1,0 +1,7 @@
+apiVersion: metallb.io/v1beta1
+kind: ConfigurationState
+metadata:
+  name: controller
+  namespace: metallb-system
+status:
+  result: Valid

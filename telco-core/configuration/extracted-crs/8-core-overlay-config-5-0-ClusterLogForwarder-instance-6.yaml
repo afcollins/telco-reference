@@ -1,0 +1,36 @@
+apiVersion: observability.openshift.io/v1
+kind: ClusterLogForwarder
+metadata:
+  name: instance
+  namespace: openshift-logging
+spec:
+  filters:
+  - name: custom-labels
+    openshiftLabels:
+      label3: other data
+      sitename: '{{hub fromConfigMap "" .ManagedClusterName "logging-name" | toLiteral
+        hub}}'
+      siteuuid: '{{hub fromConfigMap "" .ManagedClusterName "logging-uuid" | toLiteral
+        hub}}'
+    type: openshiftLabels
+  outputs:
+  - kafka:
+      url: '{{hub fromConfigMap "" "regional" (printf "%s-log-url" (index .ManagedClusterLabels
+        "region")) | toLiteral hub}}'
+    name: kafka-open
+    type: kafka
+  pipelines:
+  - filterRefs:
+    - custom-labels
+    inputRefs:
+    - audit
+    - infrastructure
+    name: all-to-default
+    outputRefs:
+    - kafka-open
+  serviceAccount:
+    name: collector
+status:
+  conditions:
+  - status: 'True'
+    type: observability.openshift.io/Valid

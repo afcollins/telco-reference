@@ -1,0 +1,10 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    operatorframework.io/bundle-unpack-min-retry-interval: 10m
+  name: openshift-nmstate
+  namespace: openshift-nmstate
+spec:
+  targetNamespaces:
+  - openshift-nmstate

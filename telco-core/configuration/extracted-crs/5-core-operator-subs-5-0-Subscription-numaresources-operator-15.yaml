@@ -1,0 +1,17 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: numaresources-operator
+  namespace: openshift-numaresources
+spec:
+  channel: '5.0'
+  config:
+    env:
+    - name: SCHEDULER_IMAGE_DIGESTS
+      value: sha256:aa00bb11cc22dd33ee44ff55ab66cd77ef88bc1234123bbd5aa789aabb8c1234
+  installPlanApproval: Automatic
+  name: numaresources-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+status:
+  state: AtLatestKnown

@@ -1,0 +1,31 @@
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  annotations:
+    kubeletconfig.experimental: "{\n \"systemReserved\":{\"memory\":\"11Gi\"}\n}\n"
+  name: control-plane-profile
+spec:
+  additionalKernelArgs:
+  - module_blacklist=irdma
+  cpu:
+    isolated: 8-287,296-575
+    reserved: 0-7,288-295
+  globallyDisableIrqLoadBalancing: false
+  hugepages:
+    pages:
+    - count: '64'
+      size: 1G
+  machineConfigPoolSelector:
+    pools.operator.machineconfiguration.openshift.io/master: ''
+  net:
+    userLevelNetworking: true
+  nodeSelector:
+    node-role.kubernetes.io/master: ''
+  numa:
+    topologyPolicy: single-numa-node
+  realTimeKernel:
+    enabled: false
+  workloadHints:
+    highPowerConsumption: false
+    perPodPowerManagement: true
+    realTime: false

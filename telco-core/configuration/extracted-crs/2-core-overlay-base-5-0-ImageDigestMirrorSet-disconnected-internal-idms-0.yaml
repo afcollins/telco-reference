@@ -1,0 +1,9 @@
+apiVersion: config.openshift.io/v1
+kind: ImageDigestMirrorSet
+metadata:
+  name: disconnected-internal-idms
+spec:
+  imageDigestMirrors:
+  - mirrors:
+    - example.com/sample-path
+    source: nomatch.io/sample-path
