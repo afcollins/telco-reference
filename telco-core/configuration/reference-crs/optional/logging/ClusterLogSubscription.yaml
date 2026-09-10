@@ -7,8 +7,8 @@ metadata:
 spec:
   channel: "stable-6.6"
   name: cluster-logging
-  source: redhat-operators-disconnected
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
 status:
   state: AtLatestKnown

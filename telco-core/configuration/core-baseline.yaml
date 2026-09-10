@@ -33,6 +33,9 @@ policies:
       - path: reference-crs/optional/logging/ClusterLogNS.yaml
       - path: reference-crs/optional/logging/ClusterLogOperGroup.yaml
       - path: reference-crs/optional/logging/ClusterLogSubscription.yaml
+        patches:
+        - spec:
+            installPlanApproval: Automatic
       - path: reference-crs/optional/logging/ClusterLogOperatorStatus.yaml
         patches:
         - status:
@@ -57,26 +60,26 @@ policies:
       - path: reference-crs/required/networking/sriov/SriovSubscription.yaml
         patches:
         - spec:
-            installPlanApproval: Manual
+            installPlanApproval: Automatic
       - path: reference-crs/required/storage/odf-external/odfNS.yaml
       - path: reference-crs/required/storage/odf-external/odfOperGroup.yaml
       - path: reference-crs/required/storage/odf-external/odfSubscription.yaml
         patches:
         - spec:
-            installPlanApproval: Manual
+            installPlanApproval: Automatic
             channel: stable-5.0
       - path: reference-crs/required/networking/metallb/metallbNS.yaml
       - path: reference-crs/required/networking/metallb/metallbOperGroup.yaml
       - path: reference-crs/required/networking/metallb/metallbSubscription.yaml
         patches:
         - spec:
-            installPlanApproval: Manual
+            installPlanApproval: Automatic
       - path: reference-crs/required/scheduling/NROPSubscriptionNS.yaml
       - path: reference-crs/required/scheduling/NROPSubscriptionOperGroup.yaml
       - path: reference-crs/required/scheduling/NROPSubscription.yaml
         patches:
         - spec:
-            installPlanApproval: Manual
+            installPlanApproval: Automatic
             config:
               env:
               - name: SCHEDULER_IMAGE_DIGESTS
@@ -87,7 +90,7 @@ policies:
       - path: reference-crs/required/networking/NMStateSubscription.yaml
         patches:
         - spec:
-            installPlanApproval: Manual
+            installPlanApproval: Automatic
 
   # Operator configuration
   - name: core-operator-config-5-0
