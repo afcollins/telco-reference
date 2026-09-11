@@ -1,0 +1,17 @@
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-overlay-config-4.22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          version: '4.22'
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists

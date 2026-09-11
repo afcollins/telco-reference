@@ -1,0 +1,1801 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ztp-core-policies
+---
+apiVersion: v1
+data:
+  control-plane-hugepg-cnt: "64"
+  control-plane-isolated: 8-287,296-575
+  control-plane-reserved: 0-7,288-295
+  nic-config-type-1-sriov-dev1: ens1f0
+  nic-config-type-1-sriov-dev2: eno1np0
+  nic-config-type-1-sriov-numvf: 32
+  role-worker-1-hugepg-cnt: "64"
+  role-worker-1-isolated: 8-111
+  role-worker-1-reserved: 0-7
+kind: ConfigMap
+metadata:
+  name: hw-types
+  namespace: ztp-core-policies
+---
+apiVersion: v1
+data:
+  zone-1-log-url: tcp://10.11.12.13:9002/test
+  zone-2-log-url: tcp://192.168.100.100:9002/test
+kind: ConfigMap
+metadata:
+  name: regional
+  namespace: ztp-core-policies
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-config-monitoring-4.22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          version: "4.22"
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-cluster-config-4.22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          version: "4.22"
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-custom-mcp-set-maxavailable-22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          version: "4.22"
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-operator-config-4.22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          version: "4.22"
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-operator-subs-4.22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          version: "4.22"
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-overlay-base-4.22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          version: "4.22"
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-overlay-config-4.22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          version: "4.22"
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-upgrade-ocp-22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          upgrade-version-4-22: ""
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-upgrade-olm-22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          upgrade-version-4-22: ""
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-upgrade-prep-22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          upgrade-version-4-22: ""
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-core-upgrade-validate-22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchLabels:
+          common: core
+          upgrade-version-4-22: ""
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  name: placement-custom-mcp-unpause-22
+  namespace: ztp-core-policies
+spec:
+  predicates:
+  - requiredClusterSelector:
+      labelSelector:
+        matchExpressions:
+        - key: common
+          operator: In
+          values:
+          - core
+        - key: version
+          operator: In
+          values:
+          - "4.22"
+        - key: ztp-done
+          operator: DoesNotExist
+  tolerations:
+  - key: cluster.open-cluster-management.io/unavailable
+    operator: Exists
+  - key: cluster.open-cluster-management.io/unreachable
+    operator: Exists
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-config-monitoring-4.22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-config-monitoring-4.22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: config-monitoring-4.22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-cluster-config-4.22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-cluster-config-4.22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-cluster-config-4.22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-custom-mcp-set-maxavailable-22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-custom-mcp-set-maxavailable-22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-custom-mcp-set-maxavailable-22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-operator-config-4.22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-operator-config-4.22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-operator-config-4.22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-operator-subs-4.22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-operator-subs-4.22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-operator-subs-4.22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-overlay-base-4.22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-overlay-base-4.22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-overlay-base-4.22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-overlay-config-4.22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-overlay-config-4.22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-overlay-config-4.22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-upgrade-ocp-22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-upgrade-ocp-22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-upgrade-ocp-22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-upgrade-olm-22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-upgrade-olm-22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-upgrade-olm-22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-upgrade-prep-22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-upgrade-prep-22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-upgrade-prep-22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-upgrade-validate-22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-upgrade-validate-22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-upgrade-validate-22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-custom-mcp-unpause-22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-custom-mcp-unpause-22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: custom-mcp-unpause-22
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/ztp-deploy-wave: "10"
+  name: config-monitoring-4.22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: config-monitoring-4.22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            data:
+              config.yaml: |
+                alertmanagerMain:
+                  volumeClaimTemplate:
+                    spec:
+                      storageClassName: ocs-external-storagecluster-ceph-rbd
+                      resources:
+                        requests:
+                          storage: 20Gi
+                prometheusK8s:
+                  retention: 15d
+                  volumeClaimTemplate:
+                    spec:
+                      storageClassName: ocs-external-storagecluster-ceph-rbd
+                      resources:
+                        requests:
+                          storage: 100Gi
+                  additionalAlertmanagerConfigs:
+                  - scheme: "http"
+                    pathPrefix: "/"
+                    timeout: "30s"
+                    apiVersion: "v1"
+                    staticConfigs:
+                    - "10.11.12.14:9999"
+            kind: ConfigMap
+            metadata:
+              name: cluster-monitoring-config
+              namespace: openshift-monitoring
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/ztp-deploy-wave: "1"
+  name: core-cluster-config-4.22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-cluster-config-4.22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: config.openshift.io/v1
+            kind: OperatorHub
+            metadata:
+              name: cluster
+            spec:
+              disableAllDefaultSources: true
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: CatalogSource
+            metadata:
+              name: redhat-operators
+              namespace: openshift-marketplace
+            spec:
+              displayName: Red Hat Disconnected Operators Catalog
+              image: registry.redhat.io/redhat/redhat-operator-index:v4.22
+              publisher: Red Hat
+              sourceType: grpc
+            status:
+              connectionState:
+                lastObservedState: READY
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: config.openshift.io/v1
+            kind: Scheduler
+            metadata:
+              name: cluster
+            spec:
+              mastersSchedulable: true
+              policy:
+                name: ""
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/ztp-deploy-wave: "201"
+  name: core-custom-mcp-set-maxavailable-22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-custom-mcp-set-maxavailable-22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfigPool
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker-1
+              name: worker-1
+            spec:
+              machineConfigSelector:
+                matchExpressions:
+                - key: machineconfiguration.openshift.io/role
+                  operator: In
+                  values:
+                  - worker
+                  - worker-1
+              maxUnavailable: 1
+              nodeSelector:
+                matchLabels:
+                  node-role.kubernetes.io/worker-1: ""
+              paused: false
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfigPool
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker-2
+              name: worker-2
+            spec:
+              machineConfigSelector:
+                matchExpressions:
+                - key: machineconfiguration.openshift.io/role
+                  operator: In
+                  values:
+                  - worker
+                  - worker-2
+              maxUnavailable: 1
+              nodeSelector:
+                matchLabels:
+                  node-role.kubernetes.io/worker-2: ""
+              paused: false
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/ztp-deploy-wave: "6"
+  name: core-operator-config-4.22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-operator-config-4.22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: ServiceAccount
+            metadata:
+              name: collector
+              namespace: openshift-logging
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: rbac.authorization.k8s.io/v1
+            kind: ClusterRoleBinding
+            metadata:
+              name: logcollector-audit-logs-binding
+            roleRef:
+              apiGroup: rbac.authorization.k8s.io
+              kind: ClusterRole
+              name: collect-audit-logs
+            subjects:
+            - kind: ServiceAccount
+              name: collector
+              namespace: openshift-logging
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: rbac.authorization.k8s.io/v1
+            kind: ClusterRoleBinding
+            metadata:
+              name: logcollector-infrastructure-logs-binding
+            roleRef:
+              apiGroup: rbac.authorization.k8s.io
+              kind: ClusterRole
+              name: collect-infrastructure-logs
+            subjects:
+            - kind: ServiceAccount
+              name: collector
+              namespace: openshift-logging
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: sriovnetwork.openshift.io/v1
+            kind: SriovOperatorConfig
+            metadata:
+              name: default
+              namespace: openshift-sriov-network-operator
+            spec:
+              configDaemonNodeSelector:
+                node-role.kubernetes.io/worker: ""
+              disableDrain: false
+              disablePlugins:
+              - mellanox
+              enableInjector: true
+              enableOperatorWebhook: true
+              featureGates:
+                mellanoxFirmwareReset: true
+                resourceInjectorMatchCondition: true
+              logLevel: 2
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: nmstate.io/v1
+            kind: NMState
+            metadata:
+              name: nmstate
+            spec: {}
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operator.openshift.io/v1
+            kind: MachineConfiguration
+            metadata:
+              name: cluster
+            spec:
+              nodeDisruptionPolicy:
+                files:
+                - actions:
+                  - restart:
+                      serviceName: nftables.service
+                    type: Restart
+                  path: /etc/sysconfig/nftables.conf
+                units:
+                - actions:
+                  - reload:
+                      serviceName: nftables.service
+                    type: Reload
+                  name: nftables.service
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: nodetopology.openshift.io/v1
+            kind: NUMAResourcesScheduler
+            metadata:
+              name: numaresourcesscheduler
+            spec:
+              imageSpec: registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v4.22.1
+              schedulerName: topo-aware-scheduler
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/ztp-deploy-wave: "5"
+  name: core-operator-subs-4.22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-operator-subs-4.22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              name: openshift-logging
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1
+            kind: OperatorGroup
+            metadata:
+              annotations:
+                operatorframework.io/bundle-unpack-min-retry-interval: 10m
+              name: cluster-logging
+              namespace: openshift-logging
+            spec:
+              targetNamespaces:
+              - openshift-logging
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: cluster-logging
+              namespace: openshift-logging
+            spec:
+              channel: stable-6.6
+              installPlanApproval: Automatic
+              name: cluster-logging
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1
+            kind: Operator
+            metadata:
+              name: cluster-logging.openshift-logging
+            status:
+              components:
+                refs:
+                - conditions:
+                  - reason: InstallSucceeded
+                    status: "True"
+                    type: Succeeded
+                  kind: ClusterServiceVersion
+                  name: cluster-logging.v6.6.0
+                  namespace: openshift-logging
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              labels:
+                openshift.io/cluster-monitoring: "true"
+              name: openshift-sriov-network-operator
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1
+            kind: OperatorGroup
+            metadata:
+              annotations:
+                operatorframework.io/bundle-unpack-min-retry-interval: 10m
+              name: sriov-network-operators
+              namespace: openshift-sriov-network-operator
+            spec:
+              targetNamespaces:
+              - openshift-sriov-network-operator
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: sriov-network-operator-subscription
+              namespace: openshift-sriov-network-operator
+            spec:
+              channel: stable
+              installPlanApproval: Automatic
+              name: sriov-network-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              labels:
+                openshift.io/cluster-monitoring: "true"
+              name: openshift-storage
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1
+            kind: OperatorGroup
+            metadata:
+              annotations:
+                operatorframework.io/bundle-unpack-min-retry-interval: 10m
+              name: openshift-storage-operatorgroup
+              namespace: openshift-storage
+            spec:
+              targetNamespaces:
+              - openshift-storage
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: odf-operator
+              namespace: openshift-storage
+            spec:
+              channel: stable-4.22
+              installPlanApproval: Automatic
+              name: odf-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              labels:
+                openshift.io/cluster-monitoring: "true"
+              name: metallb-system
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1
+            kind: OperatorGroup
+            metadata:
+              annotations:
+                operatorframework.io/bundle-unpack-min-retry-interval: 10m
+              name: metallb-operator
+              namespace: metallb-system
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: metallb-operator-sub
+              namespace: metallb-system
+            spec:
+              channel: stable
+              installPlanApproval: Automatic
+              name: metallb-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              name: openshift-numaresources
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1
+            kind: OperatorGroup
+            metadata:
+              annotations:
+                operatorframework.io/bundle-unpack-min-retry-interval: 10m
+              name: numaresources-operator
+              namespace: openshift-numaresources
+            spec:
+              targetNamespaces:
+              - openshift-numaresources
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: numaresources-operator
+              namespace: openshift-numaresources
+            spec:
+              channel: "4.22"
+              installPlanApproval: Automatic
+              name: numaresources-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              labels:
+                openshift.io/cluster-monitoring: "true"
+              name: openshift-nmstate
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1
+            kind: OperatorGroup
+            metadata:
+              annotations:
+                operatorframework.io/bundle-unpack-min-retry-interval: 10m
+              name: openshift-nmstate
+              namespace: openshift-nmstate
+            spec:
+              targetNamespaces:
+              - openshift-nmstate
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: kubernetes-nmstate-operator
+              namespace: openshift-nmstate
+            spec:
+              channel: stable
+              installPlanApproval: Automatic
+              name: kubernetes-nmstate-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/ztp-deploy-wave: "2"
+  name: core-overlay-base-4.22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-overlay-base-4.22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: config.openshift.io/v1
+            kind: ImageDigestMirrorSet
+            metadata:
+              name: disconnected-internal-idms
+            spec:
+              imageDigestMirrors:
+              - mirrors:
+                - example.com/sample-path
+                source: nomatch.io/sample-path
+        - complianceType: mustonlyhave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfig
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker
+              name: load-sctp-module
+            spec:
+              config:
+                ignition:
+                  version: 3.2.0
+                storage:
+                  files:
+                  - contents:
+                      source: data:,
+                    mode: 420
+                    overwrite: true
+                    path: /etc/modprobe.d/sctp-blacklist.conf
+                  - contents:
+                      source: data:,sctp
+                    mode: 420
+                    overwrite: true
+                    path: /etc/modules-load.d/sctp-load.conf
+        - complianceType: mustonlyhave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfig
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker
+              name: 40-load-kernel-modules-worker
+            spec:
+              config:
+                ignition:
+                  version: 3.2.0
+                storage:
+                  files:
+                  - contents:
+                      source: data:,
+                    mode: 420
+                    overwrite: true
+                    path: /etc/modprobe.d/kernel-blacklist.conf
+                  - contents:
+                      source: data:text/plain;charset=utf-8;base64,aXBfZ3JlCm5mX3RhYmxlcwpuZl9jb25udHJhY2sKbmZ0X2N0Cm5mdF9saW1pdApuZnRfbG9nCm5mdF9uYXQKbmZ0X2NoYWluX25hdApuZl9yZWplY3RfaXB2NApuZl9yZWplY3RfaXB2NgpuZm5ldGxpbmtfbG9nCg==
+                    mode: 420
+                    overwrite: true
+                    path: /etc/modules-load.d/kernel-load.conf
+        - complianceType: mustonlyhave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfig
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: master
+              name: 40-load-kernel-modules-control-plane
+            spec:
+              config:
+                ignition:
+                  version: 3.2.0
+                storage:
+                  files:
+                  - contents:
+                      source: data:,
+                    mode: 420
+                    overwrite: true
+                    path: /etc/modprobe.d/kernel-blacklist.conf
+                  - contents:
+                      source: data:text/plain;charset=utf-8;base64,aXBfZ3JlCm5mX3RhYmxlcwpuZl9jb25udHJhY2sKbmZ0X2N0Cm5mdF9saW1pdApuZnRfbG9nCm5mdF9uYXQKbmZ0X2NoYWluX25hdApuZl9yZWplY3RfaXB2NApuZl9yZWplY3RfaXB2NgpuZm5ldGxpbmtfbG9nCg==
+                    mode: 420
+                    overwrite: true
+                    path: /etc/modules-load.d/kernel-load.conf
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfig
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker
+              name: 99-worker-setsebool
+            spec:
+              config:
+                ignition:
+                  version: 3.2.0
+                systemd:
+                  units:
+                  - contents: |
+                      [Unit]
+                      Description=Set SELinux boolean for tap cni plugin
+                      Before=kubelet.service
+
+                      [Service]
+                      Type=oneshot
+                      ExecStart=/sbin/setsebool container_use_devices=on
+                      RemainAfterExit=true
+
+                      [Install]
+                      WantedBy=multi-user.target graphical.target
+                    enabled: true
+                    name: setsebool.service
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/ztp-deploy-wave: "8"
+  name: core-overlay-config-4.22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-overlay-config-4.22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: KubeletConfig
+            metadata:
+              name: sizing-master
+            spec:
+              kubeletConfig:
+                systemReserved:
+                  memory: 30Gi
+              machineConfigPoolSelector:
+                matchLabels:
+                  pools.operator.machineconfiguration.openshift.io/master: ""
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operator.openshift.io/v1
+            kind: Network
+            metadata:
+              name: cluster
+            spec:
+              additionalNetworks: []
+              defaultNetwork:
+                ovnKubernetesConfig:
+                  egressIPConfig:
+                    reachabilityTotalTimeoutSeconds: 1
+                  gatewayConfig:
+                    ipForwarding: Restricted
+                    routingViaHost: true
+              useMultiNetworkPolicy: true
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: nodetopology.openshift.io/v1
+            kind: NUMAResourcesOperator
+            metadata:
+              name: numaresourcesoperator
+            spec:
+              nodeGroups:
+              - config:
+                  infoRefreshMode: Periodic
+                machineConfigPoolSelector:
+                  matchLabels:
+                    machineconfiguration.openshift.io/role: worker-1
+              - config:
+                  infoRefreshMode: Periodic
+                machineConfigPoolSelector:
+                  matchLabels:
+                    pools.operator.machineconfiguration.openshift.io/master: ""
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: performance.openshift.io/v2
+            kind: PerformanceProfile
+            metadata:
+              annotations:
+                kubeletconfig.experimental: |
+                  {
+                   "allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],
+                   "systemReserved":{"memory":"11Gi"}
+                  }
+              name: worker-profile-1
+            spec:
+              additionalKernelArgs:
+              - module_blacklist=irdma
+              cpu:
+                isolated: 8-111
+                reserved: 0-7
+              globallyDisableIrqLoadBalancing: false
+              hugepages:
+                defaultHugepagesSize: 1G
+                pages:
+                - count: 64
+                  size: 1G
+              net:
+                userLevelNetworking: false
+              nodeSelector:
+                node-role.kubernetes.io/worker-1: ""
+              numa:
+                topologyPolicy: single-numa-node
+              realTimeKernel:
+                enabled: false
+              workloadHints:
+                highPowerConsumption: false
+                perPodPowerManagement: true
+                realTime: false
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: performance.openshift.io/v2
+            kind: PerformanceProfile
+            metadata:
+              annotations:
+                kubeletconfig.experimental: |
+                  {
+                   "systemReserved":{"memory":"11Gi"}
+                  }
+              name: control-plane-profile
+            spec:
+              additionalKernelArgs:
+              - module_blacklist=irdma
+              cpu:
+                isolated: 8-287,296-575
+                reserved: 0-7,288-295
+              globallyDisableIrqLoadBalancing: false
+              hugepages:
+                defaultHugepagesSize: 1G
+                pages:
+                - count: 64
+                  size: 1G
+              machineConfigPoolSelector:
+                pools.operator.machineconfiguration.openshift.io/master: ""
+              net:
+                userLevelNetworking: true
+              nodeSelector:
+                node-role.kubernetes.io/master: ""
+              numa:
+                topologyPolicy: single-numa-node
+              realTimeKernel:
+                enabled: false
+              workloadHints:
+                highPowerConsumption: false
+                perPodPowerManagement: true
+                realTime: false
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: tuned.openshift.io/v1
+            kind: Tuned
+            metadata:
+              name: telco-core-performance-patch
+              namespace: openshift-cluster-node-tuning-operator
+            spec:
+              profile:
+              - data: |
+                  [main]
+                  summary=Top-level core performance tuning overrides
+                name: telco-core-performance
+              - data: |
+                  [main]
+                  summary=Control plane core performance tuning overrides
+                  include=openshift-node-performance-control-plane-profile
+                  [sysctl]
+                  kernel.panic_on_unrecovered_nmi=1
+                name: control-plane-profile
+              - data: |
+                  [main]
+                  summary=Worker-1 core performance tuning overrides
+                  include=openshift-node-performance-worker-profile-1
+                  [sysctl]
+                  kernel.panic_on_unrecovered_nmi=1
+                name: worker-profile-1
+              - data: |
+                  [main]
+                  summary=Worker-2 core performance tuning overrides
+                  include=openshift-node-performance-worker-profile-2
+                  [sysctl]
+                  kernel.panic_on_unrecovered_nmi=1
+                name: worker-profile-2
+              - data: |
+                  [main]
+                  summary=Worker-3 core performance tuning overrides
+                  include=openshift-node-performance-worker-profile-3
+                  [sysctl]
+                  kernel.panic_on_unrecovered_nmi=1
+                name: worker-profile-3
+              recommend:
+              - machineConfigLabels:
+                  machineconfiguration.openshift.io/role: master
+                priority: 18
+                profile: control-plane-profile
+              - machineConfigLabels:
+                  machineconfiguration.openshift.io/role: worker-1
+                priority: 18
+                profile: worker-profile-1
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: observability.openshift.io/v1
+            kind: ClusterLogForwarder
+            metadata:
+              name: instance
+              namespace: openshift-logging
+            spec:
+              filters:
+              - name: custom-labels
+                openshiftLabels:
+                  label3: other data
+                  sitename: '{{hub fromConfigMap "" .ManagedClusterName "logging-name"
+                    | toLiteral hub}}'
+                  siteuuid: '{{hub fromConfigMap "" .ManagedClusterName "logging-uuid"
+                    | toLiteral hub}}'
+                type: openshiftLabels
+              outputs:
+              - kafka:
+                  url: '{{hub fromConfigMap "" "regional" (printf "%s-log-url" (index
+                    .ManagedClusterLabels "region")) | toLiteral hub}}'
+                name: kafka-open
+                type: kafka
+              pipelines:
+              - filterRefs:
+                - custom-labels
+                inputRefs:
+                - audit
+                - infrastructure
+                name: all-to-default
+                outputRefs:
+                - kafka-open
+              serviceAccount:
+                name: collector
+            status:
+              conditions:
+              - status: "True"
+                type: observability.openshift.io/Valid
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: metallb.io/v1beta1
+            kind: MetalLB
+            metadata:
+              name: metallb
+              namespace: metallb-system
+            spec:
+              nodeSelector:
+                node-role.kubernetes.io/worker: ""
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: metallb.io/v1beta1
+            kind: ConfigurationState
+            metadata:
+              name: controller
+              namespace: metallb-system
+            status:
+              result: Valid
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: sriovnetwork.openshift.io/v1
+            kind: SriovNetworkNodePolicy
+            metadata:
+              name: intelx710
+              namespace: openshift-sriov-network-operator
+            spec:
+              deviceType: netdevice
+              nicSelector:
+                pfNames:
+                - eno12399
+                - eno12409
+                - eno12419
+                - eno12429
+              nodeSelector:
+                sriov.network.intelx710: ""
+              numVfs: 32
+              priority: 99
+              resourceName: intel
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: sriovnetwork.openshift.io/v1
+            kind: SriovNetworkNodePolicy
+            metadata:
+              name: intele810
+              namespace: openshift-sriov-network-operator
+            spec:
+              deviceType: netdevice
+              nicSelector:
+                pfNames:
+                - ens3f0
+                - ens3f1
+                - ens6f0
+                - ens6f1
+              nodeSelector:
+                sriov.network.intele810: ""
+              numVfs: 128
+              priority: 99
+              resourceName: intel
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: sriovnetwork.openshift.io/v1
+            kind: SriovNetwork
+            metadata:
+              name: sriov-network-signal-1
+              namespace: openshift-sriov-network-operator
+            spec:
+              capabilities: '{}'
+              ipam: '{}'
+              networkNamespace: signal-1
+              resourceName: testSignaling
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: sriovnetwork.openshift.io/v1
+            kind: SriovNetworkNodePolicy
+            metadata:
+              name: mellanox-cx6
+              namespace: openshift-sriov-network-operator
+            spec:
+              deviceType: netdevice
+              nicSelector:
+                pfNames:
+                - eno16695np0
+                - eno16705np1
+              nodeSelector:
+                sriov.network.mellanoxnics.cx6: ""
+              numVfs: 8
+              priority: 99
+              resourceName: mellanoxnicscx6
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            data:
+              external_cluster_details: eyJuYW1lIjoicm9vay1jZXBoLW1vbi1lbmRwb2ludHMiLCJraW5kIjoiQ29uZmlnTWFwIiwiZGF0YSI6eyJkYXRhIjoiY2VwaG5vZGUxPTEuMi4zLjQ6Njc4OSIsIm1heE1vbklkIjoiMCIsIm1hcHBpbmciOiJ7fSJ9fSx7Im5hbWUiOiJyb29rLWNlcGgtbW9uIiwia2luZCI6IlNlY3JldCIsImRhdGEiOnsiYWRtaW4tc2VjcmV0IjoiYWRtaW4tc2VjcmV0IiwiZnNpZCI6IjExMTExMTExLTExMTEtMTExMS0xMTExLTExMTExMTExMTExMSIsIm1vbi1zZWNyZXQiOiJtb24tc2VjcmV0In19LHsibmFtZSI6InJvb2stY2VwaC1vcGVyYXRvci1jcmVkcyIsImtpbmQiOiJTZWNyZXQiLCJkYXRhIjp7InVzZXJJRCI6ImNsaWVudC5oZWFsdGhjaGVja2VyIiwidXNlcktleSI6ImMyVmpjbVYwIn19LHsibmFtZSI6Im1vbml0b3JpbmctZW5kcG9pbnQiLCJraW5kIjoiQ2VwaENsdXN0ZXIiLCJkYXRhIjp7Ik1vbml0b3JpbmdFbmRwb2ludCI6IjEuMi4zLjQsMS4yLjMuMywxLjIuMy4yIiwiTW9uaXRvcmluZ1BvcnQiOiI5MjgzIn19LHsibmFtZSI6ImNlcGgtcmJkIiwia2luZCI6IlN0b3JhZ2VDbGFzcyIsImRhdGEiOnsicG9vbCI6Im9kZl9wb29sIn19LHsibmFtZSI6InJvb2stY3NpLXJiZC1ub2RlIiwia2luZCI6IlNlY3JldCIsImRhdGEiOnsidXNlcklEIjoiY3NpLXJiZC1ub2RlIiwidXNlcktleSI6IiJ9fSx7Im5hbWUiOiJyb29rLWNzaS1yYmQtcHJvdmlzaW9uZXIiLCJraW5kIjoiU2VjcmV0IiwiZGF0YSI6eyJ1c2VySUQiOiJjc2ktcmJkLXByb3Zpc2lvbmVyIiwidXNlcktleSI6ImMyVmpjbVYwIn19LHsibmFtZSI6InJvb2stY3NpLWNlcGhmcy1wcm92aXNpb25lciIsImtpbmQiOiJTZWNyZXQiLCJkYXRhIjp7ImFkbWluSUQiOiJjc2ktY2VwaGZzLXByb3Zpc2lvbmVyIiwiYWRtaW5LZXkiOiIifX0seyJuYW1lIjoicm9vay1jc2ktY2VwaGZzLW5vZGUiLCJraW5kIjoiU2VjcmV0IiwiZGF0YSI6eyJhZG1pbklEIjoiY3NpLWNlcGhmcy1ub2RlIiwiYWRtaW5LZXkiOiJjMlZqY21WMCJ9fSx7Im5hbWUiOiJjZXBoZnMiLCJraW5kIjoiU3RvcmFnZUNsYXNzIiwiZGF0YSI6eyJmc05hbWUiOiJjZXBoZnMiLCJwb29sIjoibWFuaWxhX2RhdGEifX0K
+            kind: Secret
+            metadata:
+              name: rook-ceph-external-cluster-details
+              namespace: openshift-storage
+            type: Opaque
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: ocs.openshift.io/v1
+            kind: StorageCluster
+            metadata:
+              name: ocs-external-storagecluster
+              namespace: openshift-storage
+            spec:
+              externalStorage:
+                enable: true
+              labelSelector: {}
+            status:
+              phase: Ready
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+  name: core-upgrade-ocp-22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-upgrade-ocp-22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: config.openshift.io/v1
+            kind: ClusterVersion
+            metadata:
+              name: version
+            spec:
+              channel: stable-4.22
+              desiredUpdate:
+                force: true
+                image: quay.io/openshift-release-dev/ocp-release@sha256:<TBD>
+                version: 4.22.0
+              upstream: https://api.openshift.com/api/upgrades_info/v1/graph
+            status:
+              history:
+              - state: Completed
+                version: 4.22.0
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/soak-seconds: "60"
+  name: core-upgrade-olm-22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-upgrade-olm-22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              annotations:
+                noop-for-triggering-noncompliance: "22"
+              name: cluster-logging
+              namespace: openshift-logging
+            spec:
+              channel: stable-6.6
+              installPlanApproval: Automatic
+              name: cluster-logging
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: sriov-network-operator-subscription
+              namespace: openshift-sriov-network-operator
+            spec:
+              channel: stable
+              installPlanApproval: Manual
+              name: sriov-network-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: odf-operator
+              namespace: openshift-storage
+            spec:
+              channel: stable-4.22
+              installPlanApproval: Manual
+              name: odf-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: kubernetes-nmstate-operator
+              namespace: openshift-nmstate
+            spec:
+              channel: stable
+              installPlanApproval: Manual
+              name: kubernetes-nmstate-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: metallb-operator-sub
+              namespace: metallb-system
+            spec:
+              channel: stable
+              installPlanApproval: Manual
+              name: metallb-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: Subscription
+            metadata:
+              name: numaresources-operator
+              namespace: openshift-numaresources
+            spec:
+              channel: "4.22"
+              installPlanApproval: Manual
+              name: numaresources-operator
+              source: redhat-operators
+              sourceNamespace: openshift-marketplace
+            status:
+              state: AtLatestKnown
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/soak-seconds: "30"
+  name: core-upgrade-prep-22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-upgrade-prep-22
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: CatalogSource
+            metadata:
+              name: redhat-operators
+              namespace: openshift-marketplace
+            spec:
+              displayName: Red Hat Disconnected Operators Catalog
+              image: registry.redhat.io/redhat/redhat-operator-index:v4.22
+              publisher: Red Hat
+              sourceType: grpc
+            status:
+              connectionState:
+                lastObservedState: READY
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfigPool
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker-1
+              name: worker-1
+            spec:
+              machineConfigSelector:
+                matchExpressions:
+                - key: machineconfiguration.openshift.io/role
+                  operator: In
+                  values:
+                  - worker
+                  - worker-1
+              maxUnavailable: 100%
+              nodeSelector:
+                matchLabels:
+                  node-role.kubernetes.io/worker-1: ""
+              paused: true
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfigPool
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker-2
+              name: worker-2
+            spec:
+              machineConfigSelector:
+                matchExpressions:
+                - key: machineconfiguration.openshift.io/role
+                  operator: In
+                  values:
+                  - worker
+                  - worker-2
+              maxUnavailable: 100%
+              nodeSelector:
+                matchLabels:
+                  node-role.kubernetes.io/worker-2: ""
+              paused: true
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/soak-seconds: "30"
+  name: core-upgrade-validate-22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: core-upgrade-validate-22
+      spec:
+        object-templates-raw: |
+          {{- range (lookup "operators.coreos.com/v1alpha1" "Subscription" "" "").items }}
+          - complianceType: musthave
+            objectDefinition:
+              apiVersion: operators.coreos.com/v1alpha1
+              kind: Subscription
+              metadata:
+                name: {{ .metadata.name }}
+                namespace: {{ .metadata.namespace }}
+                annotations:
+                  ztp-validated: "4.22"
+              status:
+                state: AtLatestKnown
+          {{- end }}
+        remediationAction: inform
+        severity: low
+  remediationAction: inform
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: ""
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    ran.openshift.io/ztp-deploy-wave: "200"
+  name: custom-mcp-unpause-22
+  namespace: ztp-core-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: custom-mcp-unpause-22
+      spec:
+        evaluationInterval:
+          compliant: never
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfigPool
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker-1
+              name: worker-1
+            spec:
+              machineConfigSelector:
+                matchExpressions:
+                - key: machineconfiguration.openshift.io/role
+                  operator: In
+                  values:
+                  - worker
+                  - worker-1
+              maxUnavailable: 100%
+              nodeSelector:
+                matchLabels:
+                  node-role.kubernetes.io/worker-1: ""
+              paused: false
+            status:
+              conditions:
+              - status: "True"
+                type: Updated
+              - status: "False"
+                type: Updating
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: machineconfiguration.openshift.io/v1
+            kind: MachineConfigPool
+            metadata:
+              labels:
+                machineconfiguration.openshift.io/role: worker-2
+              name: worker-2
+            spec:
+              machineConfigSelector:
+                matchExpressions:
+                - key: machineconfiguration.openshift.io/role
+                  operator: In
+                  values:
+                  - worker
+                  - worker-2
+              maxUnavailable: 100%
+              nodeSelector:
+                matchLabels:
+                  node-role.kubernetes.io/worker-2: ""
+              paused: false
+            status:
+              conditions:
+              - status: "True"
+                type: Updated
+              - status: "False"
+                type: Updating
+        remediationAction: inform
+        severity: low
+  remediationAction: inform

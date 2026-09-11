@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  control-plane-hugepg-cnt: '64'
+  control-plane-isolated: 8-287,296-575
+  control-plane-reserved: 0-7,288-295
+  nic-config-type-1-sriov-dev1: ens1f0
+  nic-config-type-1-sriov-dev2: eno1np0
+  nic-config-type-1-sriov-numvf: 32
+  role-worker-1-hugepg-cnt: '64'
+  role-worker-1-isolated: 8-111
+  role-worker-1-reserved: 0-7
+kind: ConfigMap
+metadata:
+  name: hw-types
+  namespace: ztp-core-policies

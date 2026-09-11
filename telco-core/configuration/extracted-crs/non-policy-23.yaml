@@ -1,0 +1,13 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-core-upgrade-olm-22
+  namespace: ztp-core-policies
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-core-upgrade-olm-22
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: core-upgrade-olm-22
