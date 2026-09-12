@@ -121,6 +121,8 @@ policies:
               pages:
               - count: 64
                 size: 1G
+            net:
+              userLevelNetworking: false
 
       # TuneD performance patches for core
       - path: reference-crs/required/performance/TunedPerformancePatch.yaml

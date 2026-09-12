@@ -132,6 +132,8 @@ done
 # 4.22
 #      ran.openshift.io/ztp-deploy-wave: "8"
 #      - path: reference-crs/optional/tuning/control-plane-system-reserved.yaml
+# Optional, and should be handled through PerformanceProfile only
+#8-core-overlay-config-4.22-KubeletConfig-sizing-master-0.yaml \
 #      # - path: reference-crs/optional/networking/networkAttachmentDefinition.yaml
 #      - path: reference-crs/optional/logging/ClusterLogForwarder.yaml
 #8-core-overlay-config-4.22-ClusterLogForwarder-instance-6.yaml
@@ -151,7 +153,6 @@ done
 wave-8(){
 for i in \
 8-core-overlay-config-4.22-ConfigurationState-controller-8.yaml \
-8-core-overlay-config-4.22-KubeletConfig-sizing-master-0.yaml \
 8-core-overlay-config-4.22-MetalLB-metallb-7.yaml \
 8-core-overlay-config-4.22-Network-cluster-1.yaml \
 8-core-overlay-config-4.22-NUMAResourcesOperator-numaresourcesoperator-2.yaml \
