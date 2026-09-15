@@ -1226,7 +1226,7 @@ spec:
               machineConfigPoolSelector:
                 pools.operator.machineconfiguration.openshift.io/master: ""
               net:
-                userLevelNetworking: true
+                userLevelNetworking: false
               nodeSelector:
                 node-role.kubernetes.io/master: ""
               numa:
