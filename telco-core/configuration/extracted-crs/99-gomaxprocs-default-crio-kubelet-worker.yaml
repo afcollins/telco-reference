@@ -1,0 +1,25 @@
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: 99-worker-gomaxprocs-crio-kubelet
+spec:
+  config:
+    ignition:
+      version: 3.2.0
+    systemd:
+      units:
+        - name: kubelet.service
+          dropins:
+            - name: 99-gomaxprocs.conf
+              contents: |
+                [Service]
+                Environment=GOMAXPROCS=16
+      units:
+        - name: crio.service
+          dropins:
+            - name: 99-gomaxprocs.conf
+              contents: |
+                [Service]
+                Environment=GOMAXPROCS=16
