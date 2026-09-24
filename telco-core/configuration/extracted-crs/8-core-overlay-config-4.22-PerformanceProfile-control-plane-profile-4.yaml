@@ -2,7 +2,7 @@ apiVersion: performance.openshift.io/v2
 kind: PerformanceProfile
 metadata:
   annotations:
-    kubeletconfig.experimental: "{\n \"systemReserved\":{\"memory\":\"11Gi\"}\n}\n"
+    kubeletconfig.experimental: "{\n \"systemReserved\":{\"memory\":\"11Gi\"},\"maxPods\":1000\n}\n"
   name: control-plane-profile
 spec:
   additionalKernelArgs:
