@@ -1,0 +1,14 @@
+apiVersion: operator.openshift.io/v1
+kind: Network
+metadata:
+  name: cluster
+spec:
+  additionalNetworks: []
+  defaultNetwork:
+    ovnKubernetesConfig:
+      egressIPConfig:
+        reachabilityTotalTimeoutSeconds: 1
+      gatewayConfig:
+        ipForwarding: Restricted
+        routingViaHost: true
+  useMultiNetworkPolicy: true

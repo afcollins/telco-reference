@@ -1,0 +1,18 @@
+apiVersion: operator.openshift.io/v1
+kind: MachineConfiguration
+metadata:
+  name: cluster
+spec:
+  nodeDisruptionPolicy:
+    files:
+    - actions:
+      - restart:
+          serviceName: nftables.service
+        type: Restart
+      path: /etc/sysconfig/nftables.conf
+    units:
+    - actions:
+      - reload:
+          serviceName: nftables.service
+        type: Reload
+      name: nftables.service

@@ -1,0 +1,16 @@
+apiVersion: nodetopology.openshift.io/v1
+kind: NUMAResourcesOperator
+metadata:
+  name: numaresourcesoperator
+spec:
+  nodeGroups:
+  - config:
+      infoRefreshMode: Periodic
+    machineConfigPoolSelector:
+      matchLabels:
+        machineconfiguration.openshift.io/role: worker-1
+  - config:
+      infoRefreshMode: Periodic
+    machineConfigPoolSelector:
+      matchLabels:
+        pools.operator.machineconfiguration.openshift.io/master: ''

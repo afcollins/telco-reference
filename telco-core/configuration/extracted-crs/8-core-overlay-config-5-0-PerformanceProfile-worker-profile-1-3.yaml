@@ -1,0 +1,31 @@
+apiVersion: performance.openshift.io/v2
+kind: PerformanceProfile
+metadata:
+  annotations:
+    kubeletconfig.experimental: "{\n \"allowedUnsafeSysctls\":[\"net.ipv6.conf.all.accept_ra\"\
+      ],\n \"systemReserved\":{\"memory\":\"11Gi\"}\n}\n"
+  name: worker-profile-1
+spec:
+  additionalKernelArgs:
+  - module_blacklist=irdma
+  cpu:
+    isolated: 8-111
+    reserved: 0-7
+  globallyDisableIrqLoadBalancing: false
+  hugepages:
+    defaultHugepagesSize: 1G
+    pages:
+    - count: 64
+      size: 1G
+  net:
+    userLevelNetworking: false
+  nodeSelector:
+    node-role.kubernetes.io/worker-1: ''
+  numa:
+    topologyPolicy: single-numa-node
+  realTimeKernel:
+    enabled: false
+  workloadHints:
+    highPowerConsumption: false
+    perPodPowerManagement: true
+    realTime: false
