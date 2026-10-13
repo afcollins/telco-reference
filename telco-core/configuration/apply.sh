@@ -8,7 +8,7 @@
 # We don't want to disable catalog sources for this environment
 wave-1() {
 for i in \
-	1-core-cluster-config-5-0-Scheduler-cluster-2.yaml
+	1-core-cluster-config-5-0-Scheduler-cluster-2.yaml \
 	; do
 	oc apply -f extracted-crs/${i}
 done
@@ -203,6 +203,7 @@ done
 #      ran.openshift.io/ztp-deploy-wave: "10"
 #      - path: reference-crs/optional/other/monitoring-config-cm.yaml
 
-wave-1
+#wave-1
+wave-5
 #wave-6
 #wave-8
