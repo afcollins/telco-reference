@@ -90,11 +90,11 @@ done
 #6-core-operator-config-5-0-ClusterRoleBinding-logcollector-infrastructure-logs-binding-2.yaml \
 #6-core-operator-config-5-0-ClusterRoleBinding-logcollector-audit-logs-binding-1.yaml
 #6-core-operator-config-5-0-ClusterRoleBinding-logcollector-infrastructure-logs-binding-2.yaml
+#6-core-operator-config-5-0-MachineConfiguration-cluster-5.yaml \
 #6-core-operator-config-5-0-ServiceAccount-collector-0.yaml
 wave-6(){
 for i in \
 6-core-operator-config-5-0-SriovOperatorConfig-default-3.yaml \
-6-core-operator-config-5-0-MachineConfiguration-cluster-5.yaml \
 6-core-operator-config-5-0-NMState-nmstate-4.yaml \
 6-core-operator-config-5-0-NUMAResourcesScheduler-numaresourcesscheduler-6.yaml \
 	; do
@@ -123,7 +123,6 @@ done
 wave-8(){
 for i in \
 8-core-overlay-config-5-0-ConfigurationState-controller-9.yaml \
-8-core-overlay-config-5-0-KubeletConfig-sizing-master-0.yaml \
 8-core-overlay-config-5-0-MetalLB-metallb-8.yaml \
 8-core-overlay-config-5-0-Network-cluster-1.yaml \
 8-core-overlay-config-5-0-NUMAResourcesOperator-numaresourcesoperator-2.yaml \
@@ -204,6 +203,6 @@ done
 #      - path: reference-crs/optional/other/monitoring-config-cm.yaml
 
 #wave-1
-wave-5
+#wave-5
 #wave-6
-#wave-8
+wave-8

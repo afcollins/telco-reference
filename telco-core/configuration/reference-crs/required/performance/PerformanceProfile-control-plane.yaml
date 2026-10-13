@@ -46,4 +46,4 @@ spec:
     # All guaranteed QoS containers get resources from a single NUMA node
     topologyPolicy: "single-numa-node"
   net:
-    userLevelNetworking: true
+    userLevelNetworking: false

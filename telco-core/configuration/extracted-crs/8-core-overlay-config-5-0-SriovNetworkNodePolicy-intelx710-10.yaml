@@ -7,10 +7,10 @@ spec:
   deviceType: netdevice
   nicSelector:
     pfNames:
-    - eno12399
-    - eno12409
-    - eno12419
-    - eno12429
+    - eno12399np0
+    - eno12409np1
+    - eno12419np2
+    - eno12429np3
   nodeSelector:
     sriov.network.intelx710: ''
   numVfs: 32

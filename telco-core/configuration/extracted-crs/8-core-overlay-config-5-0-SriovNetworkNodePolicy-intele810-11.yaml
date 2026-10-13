@@ -7,10 +7,10 @@ spec:
   deviceType: netdevice
   nicSelector:
     pfNames:
-    - ens3f0
-    - ens3f1
-    - ens6f0
-    - ens6f1
+    - ens3f0np0
+    - ens3f1np1
+    - ens6f0np0
+    - ens6f1np1
   nodeSelector:
     sriov.network.intele810: ''
   numVfs: 128

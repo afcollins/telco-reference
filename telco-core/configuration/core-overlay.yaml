@@ -134,6 +134,7 @@ policies:
               reserved: '0-7'
               isolated: '8-111'
             hugepages:
+              defaultHugepagesSize: 1G
               pages:
               - count: 64
                 size: 1G
@@ -201,10 +202,10 @@ policies:
             deviceType: netdevice
             nicSelector:
               pfNames:
-                - 'eno12399'
-                - 'eno12409'
-                - 'eno12419'
-                - 'eno12429'
+                - 'eno12399np0'
+                - 'eno12409np1'
+                - 'eno12419np2'
+                - 'eno12429np3'
             nodeSelector:
               sriov.network.intelx710: ''
             numVfs: 32
@@ -218,10 +219,10 @@ policies:
             deviceType: netdevice
             nicSelector:
               pfNames:
-                - 'ens3f0'
-                - 'ens3f1'
-                - 'ens6f0'
-                - 'ens6f1'
+                - 'ens3f0np0'
+                - 'ens3f1np1'
+                - 'ens6f0np0'
+                - 'ens6f1np1'
             nodeSelector:
               sriov.network.intele810: ''
             numVfs: 128
