@@ -122,20 +122,19 @@ done
 #8-core-overlay-config-5-0-ClusterLogForwarder-instance-7.yaml
 wave-8(){
 for i in \
-8-core-overlay-config-5-0-ConfigurationState-controller-9.yaml \
-8-core-overlay-config-5-0-MetalLB-metallb-8.yaml \
+8-core-overlay-config-5-0-ConfigurationState-controller-8.yaml \
+8-core-overlay-config-5-0-MetalLB-metallb-7.yaml \
 8-core-overlay-config-5-0-Network-cluster-1.yaml \
 8-core-overlay-config-5-0-NUMAResourcesOperator-numaresourcesoperator-2.yaml \
-8-core-overlay-config-5-0-PerformanceProfile-control-plane-profile-5.yaml \
+8-core-overlay-config-5-0-PerformanceProfile-control-plane-profile-4.yaml \
 8-core-overlay-config-5-0-PerformanceProfile-worker-profile-1-3.yaml \
-8-core-overlay-config-5-0-PerformanceProfile-worker-profile-2-4.yaml \
-8-core-overlay-config-5-0-Secret-rook-ceph-external-cluster-details-14.yaml \
-8-core-overlay-config-5-0-SriovNetworkNodePolicy-intele810-11.yaml \
-8-core-overlay-config-5-0-SriovNetworkNodePolicy-intelx710-10.yaml \
-8-core-overlay-config-5-0-SriovNetworkNodePolicy-mellanox-cx6-13.yaml \
-8-core-overlay-config-5-0-SriovNetwork-sriov-network-signal-1-12.yaml \
-8-core-overlay-config-5-0-StorageCluster-ocs-external-storagecluster-15.yaml \
-8-core-overlay-config-5-0-Tuned-telco-core-performance-patch-6.yaml \
+8-core-overlay-config-5-0-Secret-rook-ceph-external-cluster-details-13.yaml \
+8-core-overlay-config-5-0-SriovNetworkNodePolicy-intele810-10.yaml \
+8-core-overlay-config-5-0-SriovNetworkNodePolicy-intelx710-9.yaml \
+8-core-overlay-config-5-0-SriovNetworkNodePolicy-mellanox-cx6-12.yaml \
+8-core-overlay-config-5-0-SriovNetwork-sriov-network-signal-1-11.yaml \
+8-core-overlay-config-5-0-StorageCluster-ocs-external-storagecluster-14.yaml \
+8-core-overlay-config-5-0-Tuned-telco-core-performance-patch-5.yaml \
 	; do
 	oc apply -f extracted-crs/${i}
 done

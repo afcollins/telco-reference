@@ -68,7 +68,3 @@ spec:
       machineconfiguration.openshift.io/role: worker-1
     priority: 18
     profile: worker-profile-1
-  - machineConfigLabels:
-      machineconfiguration.openshift.io/role: worker-2
-    priority: 18
-    profile: worker-profile-2
