@@ -109,30 +109,13 @@ policies:
             nodeSelector:
               node-role.kubernetes.io/worker-1: ""
 
-      - path: reference-crs/required/performance/PerformanceProfile.yaml
-        patches:
-        - metadata:
-            name: worker-profile-2
-          spec:
-            cpu:
-              reserved: '0-7,288-295'
-              isolated: '8-287,296-575'
-            hugepages:
-              defaultHugepagesSize: 1G
-              pages:
-              - count: 64
-                size: 1G
-            nodeSelector:
-              node-role.kubernetes.io/worker-2: ""
-
-
       # Control plane PerformanceProfile
       - path: reference-crs/required/performance/PerformanceProfile-control-plane.yaml
         patches:
         - spec:
             cpu:
-              reserved: '0-7'
-              isolated: '8-111'
+              reserved: '0-7,288-295'
+              isolated: '8-287,296-575'
             hugepages:
               defaultHugepagesSize: 1G
               pages:
@@ -154,10 +137,6 @@ policies:
                   machineconfiguration.openshift.io/role: worker-1
                 priority: 18
                 profile: worker-profile-1
-              - machineConfigLabels:
-                  machineconfiguration.openshift.io/role: worker-2
-                priority: 18
-                profile: worker-profile-2
 
       # Cluster Logging
       - path: reference-crs/optional/logging/ClusterLogForwarder.yaml

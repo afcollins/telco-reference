@@ -5,17 +5,13 @@ metadata:
   name: hw-types
   namespace: ztp-core-policies
 data:
-  control-plane-reserved: '0-7'
-  control-plane-isolated: '8-111'
+  control-plane-reserved: '0-7,288-295'
+  control-plane-isolated: '8-287,296-575'
   control-plane-hugepg-cnt: '64'
 
   role-worker-1-reserved: '0-7'
   role-worker-1-isolated: '8-111'
   role-worker-1-hugepg-cnt: '64'
-
-  role-worker-2-reserved: '0-7,288-295'
-  role-worker-2-isolated: '8-287,296-575'
-  role-worker-2-hugepg-cnt: '64'
 
   nic-config-type-1-sriov-dev1: ens1f0
   nic-config-type-1-sriov-dev2: eno1np0
