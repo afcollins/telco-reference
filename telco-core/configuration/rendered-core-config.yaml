@@ -710,7 +710,7 @@ spec:
             metadata:
               name: numaresourcesscheduler
             spec:
-              imageSpec: registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9:v4.22.1
+              imageSpec: registry.redhat.io/openshift4/noderesourcetopology-scheduler-rhel9@sha256:55d3fe347f35c257b6f828ec0da1aeef057f723bbcec1576d4d0f9018fb74fe7
               schedulerName: topo-aware-scheduler
         remediationAction: inform
         severity: low
@@ -1411,7 +1411,7 @@ spec:
                 - eno16705np1
               nodeSelector:
                 sriov.network.mellanoxnics.cx6: ""
-              numVfs: 8
+              numVfs: 127
               priority: 99
               resourceName: mellanoxnicscx6
         - complianceType: musthave

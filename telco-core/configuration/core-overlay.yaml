@@ -228,7 +228,7 @@ policies:
                 - 'eno16705np1'
             nodeSelector:
               sriov.network.mellanoxnics.cx6: ""
-            numVfs: 8
+            numVfs: 127
             priority: 99
             resourceName: mellanoxnicscx6
 
