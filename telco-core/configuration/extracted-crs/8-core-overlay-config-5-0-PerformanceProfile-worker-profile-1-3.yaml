@@ -3,7 +3,7 @@ kind: PerformanceProfile
 metadata:
   annotations:
     kubeletconfig.experimental: "{\n \"allowedUnsafeSysctls\":[\"net.ipv6.conf.all.accept_ra\"\
-      ],\n \"systemReserved\":{\"memory\":\"11Gi\"}\n}\n"
+      ],\n \"maxPods\":1200,\n \"systemReserved\":{\"memory\":\"11Gi\"}\n}\n"
   name: worker-profile-1
 spec:
   additionalKernelArgs:

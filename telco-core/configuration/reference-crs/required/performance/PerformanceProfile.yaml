@@ -11,6 +11,7 @@ metadata:
     kubeletconfig.experimental: |
       {
        "allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],
+       "maxPods":1200,
        "systemReserved":{"memory":"11Gi"}
       }
 spec:

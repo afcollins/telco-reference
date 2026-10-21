@@ -9,6 +9,7 @@ metadata:
     # systemReserved: when used, it should be tailored for each environment.
     kubeletconfig.experimental: |
       {
+       "maxPods":1200,
        "systemReserved":{"memory":"11Gi"}
       }
 spec:
