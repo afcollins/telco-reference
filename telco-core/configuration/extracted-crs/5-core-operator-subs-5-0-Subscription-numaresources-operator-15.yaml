@@ -5,6 +5,10 @@ metadata:
   namespace: openshift-numaresources
 spec:
   channel: stable-5.0
+  config:
+    env:
+    - name: SCHEDULER_IMAGE_DIGESTS
+      value: sha256:ae16d3d55f3c2ff15273612f5c23364bcd247b022c70e2294dd91107beea397c
   installPlanApproval: Automatic
   name: numaresources-operator
   source: redhat-operators
