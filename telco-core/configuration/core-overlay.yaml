@@ -100,8 +100,8 @@ policies:
             name: worker-profile-1
           spec:
             cpu:
-              reserved: '0-7'
-              isolated: '8-111'
+              reserved: '0-15'
+              isolated: '16-111'
             hugepages:
               pages:
               - count: 64
@@ -114,8 +114,8 @@ policies:
         patches:
         - spec:
             cpu:
-              reserved: '0-7,288-295'
-              isolated: '8-287,296-575'
+              reserved: '0-15,288-303'
+              isolated: '16-287,304-575'
             hugepages:
               defaultHugepagesSize: 1G
               pages:
